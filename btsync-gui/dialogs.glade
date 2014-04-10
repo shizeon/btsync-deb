@@ -201,6 +201,13 @@
       <column type="GObject"/>
     </columns>
   </object>
+  <object class="GtkTextBuffer" id="enc_secret_text"/>
+  <object class="GtkListStore" id="fp_predefined_hosts">
+    <columns>
+      <!-- column-name Host -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkDialog" id="folderprefs">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -306,6 +313,20 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkLabel" id="enc_secret_label">
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="yalign">0.89999997615814209</property>
+                    <property name="label" translatable="yes">Encryption only secret</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
+                    <property name="width">2</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkButtonBox" id="buttonbox21">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -352,7 +373,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="top_attach">4</property>
+                    <property name="top_attach">6</property>
                     <property name="width">1</property>
                     <property name="height">1</property>
                   </packing>
@@ -368,7 +389,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
-                    <property name="top_attach">4</property>
+                    <property name="top_attach">6</property>
                     <property name="width">1</property>
                     <property name="height">1</property>
                   </packing>
@@ -382,7 +403,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
-                    <property name="top_attach">6</property>
+                    <property name="top_attach">8</property>
                     <property name="width">3</property>
                     <property name="height">1</property>
                   </packing>
@@ -428,6 +449,29 @@
                   <packing>
                     <property name="left_attach">0</property>
                     <property name="top_attach">3</property>
+                    <property name="width">2</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindowEnc">
+                    <property name="can_focus">True</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="enc_secret">
+                        <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="editable">False</property>
+                        <property name="wrap_mode">char</property>
+                        <property name="indent">-1</property>
+                        <property name="buffer">enc_secret_text</property>
+                        <property name="input_purpose">phone</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">5</property>
                     <property name="width">2</property>
                     <property name="height">1</property>
                   </packing>
@@ -569,7 +613,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="top_attach">5</property>
+                    <property name="top_attach">7</property>
                     <property name="width">1</property>
                     <property name="height">1</property>
                   </packing>
@@ -592,10 +636,52 @@
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
-                    <property name="top_attach">5</property>
+                    <property name="top_attach">7</property>
                     <property name="width">2</property>
                     <property name="height">1</property>
                   </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="box8">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">6</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="enc_secret_copy">
+                        <property name="label">gtk-copy</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="clicked" handler="onEncSecretCopy" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="enc_secret_copy_label">
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">5</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
                 <child>
                   <placeholder/>
@@ -870,13 +956,6 @@
       <action-widget response="-5">fp_button_ok</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkListStore" id="fp_predefined_hosts">
-    <columns>
-      <!-- column-name Host -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkTextBuffer" id="ot_secret_text"/>
   <object class="GtkDialog" id="newhost">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -972,6 +1051,7 @@
       </object>
     </child>
   </object>
+  <object class="GtkTextBuffer" id="ot_secret_text"/>
   <object class="GtkDialog" id="prefsadvanced">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
