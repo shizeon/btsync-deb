@@ -124,7 +124,8 @@
             </child>
             <child>
               <object class="GtkButton" id="button5">
-                <property name="label" translatable="yes">Generate</property>
+                <property name="label" translatable="yes">Generate
+Standard</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -136,9 +137,25 @@
                 <property name="left_attach">2</property>
                 <property name="top_attach">0</property>
                 <property name="width">1</property>
-                <property name="height">1</property>
+                <property name="height">2</property>
               </packing>
             </child>
+			<child>
+              <object class="GtkButton" id="button6">
+                <property name="label" translatable="yes">Generate
+w/Encryption</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="onFolderAddGenerateEnc" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">3</property>
+                <property name="top_attach">0</property>
+                <property name="width">1</property>
+                <property name="height">2</property>
+              </packing>
+			</child>
             <child>
               <object class="GtkButton" id="addfolder_choose">
                 <property name="label" translatable="yes">Choose</property>
@@ -153,7 +170,7 @@
               <packing>
                 <property name="left_attach">2</property>
                 <property name="top_attach">2</property>
-                <property name="width">1</property>
+                <property name="width">2</property>
                 <property name="height">1</property>
               </packing>
             </child>
@@ -167,7 +184,7 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
-                <property name="width">2</property>
+                <property name="width">1</property>
                 <property name="height">1</property>
               </packing>
             </child>

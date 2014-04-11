@@ -121,6 +121,10 @@ class BtSyncFolderAdd(BtBaseDialog):
 	def onFolderAddGenerate(self,widget):
 		secrets = self.agent.get_secrets()
 		self.secret_w.set_text(secrets['read_write'])
+
+	def onFolderAddGenerateEnc(self,widget):
+		secrets = self.agent.get_secrets(None,True)
+		self.secret_w.set_text(secrets['read_write'])
 		
 class BtSyncFolderScanQR(BtBaseDialog):
 	def __init__(self,rwsecret,rosecret,basename):
