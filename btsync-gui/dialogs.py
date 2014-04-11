@@ -197,7 +197,7 @@ class BtSyncFolderPrefs(BtBaseDialog):
 		self.idfolder = folder
 		self.idsecret = secret
 		self.rwsecret = result['read_write'] if result.has_key('read_write') else None
-		self.rosecret = result['read_only']
+		self.rosecret = result['read_only'] if result.has_key('read_only') else None
 		self.ensecret = result['encryption'] if result.has_key('encryption') else None
 		# initialize OK button
 		self.fp_button_ok = self.builder.get_object('fp_button_ok')
@@ -219,6 +219,7 @@ class BtSyncFolderPrefs(BtBaseDialog):
 		self.ot_secret_text = self.builder.get_object('ot_secret_text')
 		self.ot_secret_copy = self.builder.get_object('ot_secret_copy')
 		self.ot_secret_new = self.builder.get_object('ot_secret_new')
+
 		# secrets page - values
 		if self.rwsecret is None:
 			self.rw_secret.set_sensitive(False)
@@ -226,6 +227,12 @@ class BtSyncFolderPrefs(BtBaseDialog):
 			self.rw_secret_copy.set_sensitive(False)
 		else:
 			self.rw_secret_text.set_text(str(self.rwsecret))
+
+		if self.rosecret is None:
+			self.ro_secret.set_sensitive(False)
+			self.ro_secret_copy.set_sensitive(False)
+		else:
+			self.ro_secret_text.set_text(str(self.rosecret))
 
 		# encryption secrets values
 		#  Only show encryption panels if there is an encryption secret
@@ -240,7 +247,7 @@ class BtSyncFolderPrefs(BtBaseDialog):
 			self.enc_secret_copy.set_visible(True)
 			self.enc_secret_copy_label.set_visible(True)
 
-		self.ro_secret_text.set_text(str(self.rosecret))
+
 
 		# prefs page
 		self.fp_use_relay = self.builder.get_object('fp_use_relay')
